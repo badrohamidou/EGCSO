@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGCSO Events - Configuration Helper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1a202c;
+        }
+
+        .subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .step {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .step-number {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2d3748;
+        }
+
+        .step-content {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+            font-size: 0.875rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s;
+            font-family: monospace;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .output {
+            background: #1a202c;
+            color: #48bb78;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-all;
+            display: none;
+        }
+
+        .output.show {
+            display: block;
+        }
+
+        .copy-btn {
+            background: #48bb78;
+            margin-top: 12px;
+        }
+
+        .copy-btn:hover {
+            background: #38a169;
+        }
+
+        .warning {
+            background: #fff5f5;
+            border-left: 4px solid #f56565;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .warning-title {
+            font-weight: 600;
+            color: #c53030;
+            margin-bottom: 8px;
+        }
+
+        .warning-text {
+            color: #742a2a;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .success {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .success.show {
+            display: block;
+        }
+
+        .success-title {
+            font-weight: 600;
+            color: #22543d;
+            margin-bottom: 8px;
+        }
+
+        .success-text {
+            color: #22543d;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗓️ EGCSO Events Setup</h1>
+        <p class="subtitle">Configure your calendar in 2 minutes</p>
+
+        <div class="step">
+            <div class="step-number">Step 1</div>
+            <div class="step-title">Get Your Google Calendar API Key</div>
+            <div class="step-content">
+                <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Go to <a href="https://console.cloud.google.com/" target="_blank" class="link">Google Cloud Console</a></li>
+                    <li>Create a project → Enable "Google Calendar API"</li>
+                    <li>Create Credentials → API Key</li>
+                    <li>Copy your API key and paste below</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="apiKey">Google Calendar API Key</label>
+            <input type="text" id="apiKey" placeholder="AIzaSy..." />
+        </div>
+
+        <div class="step">
+            <div class="step-number">Step 2</div>
+            <div class="step-title">Get Your Calendar ID</div>
+            <div class="step-content">
+                <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>Open <a href="https://calendar.google.com/" target="_blank" class="link">Google Calendar</a></li>
+                    <li>Click ⋮ next to your calendar → Settings and sharing</li>
+                    <li>Check "Make available to public"</li>
+                    <li>Copy your Calendar ID and paste below</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="calendarId">Calendar ID</label>
+            <input type="text" id="calendarId" placeholder="your-email@gmail.com" />
+        </div>
+
+        <div class="warning">
+            <div class="warning-title">⚠️ Important Security Note</div>
+            <div class="warning-text">
+                After setup, restrict your API key in Google Cloud Console to only allow requests from your website domain. This prevents unauthorized use of your API key.
+            </div>
+        </div>
+
+        <button class="button" onclick="generateConfig()">Generate Configuration</button>
+
+        <div class="success" id="successMessage">
+            <div class="success-title">✅ Configuration Generated!</div>
+            <div class="success-text">
+                Copy the code below and replace the CONFIG section at the top of your <strong>app.js</strong> file.
+            </div>
+        </div>
+
+        <div class="output" id="output"></div>
+        
+        <button class="button copy-btn" id="copyBtn" style="display: none;" onclick="copyToClipboard()">
+            📋 Copy to Clipboard
+        </button>
+
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e2e8f0;">
+            <p style="color: #718096; font-size: 0.875rem; text-align: center;">
+                Need help? Check <strong>SETUP_GUIDE.md</strong> for detailed instructions
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function generateConfig() {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const calendarId = document.getElementById('calendarId').value.trim();
+
+            if (!apiKey || !calendarId) {
+                alert('Please fill in both fields!');
+                return;
+            }
+
+            const config = `const CONFIG = {
+    API_KEY: '${apiKey}',
+    CALENDAR_ID: '${calendarId}',
+    MAX_RESULTS: 250,
+    CACHE_DURATION: 5 * 60 * 1000, // 5 minutes
+};`;
+
+            const output = document.getElementById('output');
+            const copyBtn = document.getElementById('copyBtn');
+            const success = document.getElementById('successMessage');
+
+            output.textContent = config;
+            output.classList.add('show');
+            copyBtn.style.display = 'block';
+            success.classList.add('show');
+
+            // Scroll to output
+            output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('output');
+            const text = output.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                btn.style.background = '#48bb78';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                alert('Configuration copied to clipboard!');
+            });
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('calendarId').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                generateConfig();
+            }
+        });
+    </script>
+</body>
+</html>
